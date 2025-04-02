@@ -97,13 +97,17 @@ prime_p = input("Enter the prime number p: ")
 
 if prime_p.strip() == "":
     print("Reading prime number p from file", "\n")
-    prime_p = read_prime_from_file("Assignment_1\q1\prime_p.txt")
+    prime_p = read_prime_from_file("2021450_FCS_Assignment_1\q1\prime_p.txt")
+else:
+    prime_p = bytes(prime_p, 'utf-8')
 
 prime_q = input("Enter the prime number q: ")
 
 if prime_q.strip() == "":
     print("Reading prime number q from file", "\n")
-    prime_q = read_prime_from_file("Assignment_1\q1\prime_q.txt")
+    prime_q = read_prime_from_file("2021450_FCS_Assignment_1\q1\prime_q.txt")
+else:
+    prime_q = bytes(prime_q, 'utf-8')
 
 bob.generate_key_using_rsa(prime_p, prime_q)
 print("Bob's public key: (n , e)", bob.get_public_key(), "\n")
@@ -123,8 +127,10 @@ print("Symmetric key decrypted by Bob: ", bob.decrypt_alice_symmetric_key(cipher
 message = input("Enter the message to be encrypted: ")
 if message.strip() == "":
     message = None
+else:
+    message = bytes(message, 'utf-8')
 
-cipher_text = bob.encrypt_using_symmetric_key()
+cipher_text = bob.encrypt_using_symmetric_key(message,'utf-8')
 print("Cipher text from Bob (encrypted message): ", cipher_text, "\n")
 
 #Step 6: Alice decrypts the message using the symmetric key
